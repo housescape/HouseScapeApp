@@ -1,3 +1,7 @@
+<html lang="en" xmlns="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +9,9 @@
     <title>Title</title>
 </head>
 <body>
-This is Game selector Page
+Select game
+<select>
+    <option th:each="game: ${games}" th:text="${game.name}"></option>
+</select>
 </body>
 </html>

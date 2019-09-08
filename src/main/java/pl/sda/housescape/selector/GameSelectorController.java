@@ -18,7 +18,7 @@ public class GameSelectorController {
     @RequestMapping
     public ModelAndView getGamesPage(){
         ModelAndView mnv = new ModelAndView("games");
-      //  mnv.addObject("games", gameSelectorService.getGames());
+        mnv.addObject("games", gameSelectorService.getGames());
         return mnv;
     }
 }
