@@ -9,10 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping ("/create")
 public class GameCreatorController {
 
+    private final GameCreatorService gameCreatorService;
+
+    public GameCreatorController(GameCreatorService gameCreatorService) {
+        this.gameCreatorService = gameCreatorService;
+    }
 
     @RequestMapping
     public ModelAndView getCreatorGamePage() {
         ModelAndView mnv = new ModelAndView("create");
         return mnv;
     }
+
+
 }
