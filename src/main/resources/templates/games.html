@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset=" UTF-8" xmlns:th="http://www.w3.org/1999/xhtml">
     <title>Title</title>
 </head>
 <body>
-This is Game selector Page
+Select Game
+<select>
+    <option th:each="game: ${games}" th:text="${game.name}"></option>
+</select>
 </body>
 </html>

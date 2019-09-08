@@ -11,10 +11,10 @@ public class GameSelectorServiceImpl implements GameSelectorService {
 
     @Override
     public List<Game> getGames() {
-        List<Game> gamesList= new ArrayList<>();
-        gamesList.add(1,new Game(1, "OgródRod"));
-        gamesList.add(2,new Game(2, "PodwórkoBabci"));
-        gamesList.add(3,new Game(3, "DziałkaBłażeja"));
-return gamesList;
+        List<Game> gamesList = new ArrayList<>();
+        gamesList.add(new Game(1, "OgródRod"));
+        gamesList.add(new Game(2, "PodwórkoBabci"));
+        gamesList.add(new Game(3, "DziałkaBłażeja"));
+        return gamesList;
     }
 }

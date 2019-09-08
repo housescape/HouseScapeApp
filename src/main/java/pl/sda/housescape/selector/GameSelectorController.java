@@ -15,10 +15,11 @@ public class GameSelectorController {
         this.gameSelectorService = gameSelectorService;
 
     }
+
     @RequestMapping
-    public ModelAndView getGamesPage(){
+    public ModelAndView getGamesPage() {
         ModelAndView mnv = new ModelAndView("games");
-      //  mnv.addObject("games", gameSelectorService.getGames());
+        mnv.addObject("games", gameSelectorService.getGames());
         return mnv;
     }
 }
