@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 @Setter
 public class Game {
 
+    private int id;
     private String name;
-    public Game(String name) {
+
+    public Game(int id, String name) {
+        this.id = id;
         this.name = name;
-
-
     }
 }
