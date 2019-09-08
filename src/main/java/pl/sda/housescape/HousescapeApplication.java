@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HousescapeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HousescapeApplication.class, args);
+        SpringApplication.run(HousescapeApplication.class, args);//
     }
 
 }
