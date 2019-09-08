@@ -6,5 +6,4 @@ public class GameStep {
 
     private String urlImage;
 
-
 }
