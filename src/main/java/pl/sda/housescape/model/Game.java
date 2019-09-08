@@ -12,6 +12,5 @@ public class Game {
     public Game(String name) {
         this.name = name;
 
-
     }
 }
