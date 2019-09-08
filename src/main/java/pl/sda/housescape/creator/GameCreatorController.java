@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping ("/game-creator")
+@RequestMapping ("/create")
 public class GameCreatorController {
 
     private final GameCreatorService gameCreatorService;
@@ -17,7 +17,7 @@ public class GameCreatorController {
 
     @RequestMapping
     public ModelAndView getCreatorGamePage() {
-        ModelAndView mnv = new ModelAndView("create-game");
+        ModelAndView mnv = new ModelAndView("create");
         return mnv;
     }
 
