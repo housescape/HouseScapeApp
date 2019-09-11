@@ -2,7 +2,7 @@ package pl.sda.housescape.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
+import pl.sda.housescape.game.GameEntity;
 
 import java.util.List;
 
@@ -10,12 +10,12 @@ import java.util.List;
 @Setter
 public class Game {
 
-    private int id;
+    private Long id;
     private String name;
     private List<GameStep> steps;
 
 
-    public Game(int id, String name) {
+    public Game(GameEntity gameEntity) {
         this.id = id;
         this.name = name;
     }

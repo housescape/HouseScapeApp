@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/create}" method="post" th:object="${newGame}">
+        <label>Name</label>
+        <input type="text" th:field="*{name}" />
+
+        <button th:type="submit">Add Product</button>
+    </form>
+</div>
+</body>
+</html>

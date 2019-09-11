@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/game")
 public class GameController {
 
-    GameService gameService = new GameService();
+    //GameService gameService = new GameService();
 
     @RequestMapping
     public ModelAndView getGamesPage(){
