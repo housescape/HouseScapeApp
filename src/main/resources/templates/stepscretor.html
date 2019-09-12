@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <title>HomeScape</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background-color: #81aea7 ">
 <div class="row" style="margin-top: 20px">
@@ -24,36 +25,31 @@
 </div>
 <div class="row" style="margin-top: 20px; margin-left: 20px">
     <div class="col-sm-7">
-    Steps
+        <h2>Steps</h2>
 
+        <form method="POST" enctype="multipart/form-data" action="/upload">
 
-            <form method="POST" enctype="multipart/form-data" action="/upload">
-                <table>
-                    <tr>
-                        <td>Image to upload:</td>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Upload"/></td>
-                    </tr>
-                </table>
-            </form>
+            <div class="form-group">
+                <label for="image">Image to upload</label><br/>
+                <input type="file" id="image" name="file"/>
+                <small id="image2" class="form-text text-muted">Choose image
+                </small>
+            </div>
 
             <div class="form-group">
                 <label for="description">Description of place</label>
-                <input type="text" class="form-control" id="description" placeholder="Description">
+                <input type="text"  class="form-control" id="description" name="description" placeholder="Description">
                 <small id="description2" class="form-text text-muted">Description of place
                 </small>
             </div>
             <div class="form-group">
                 <label for="code">Enter code to unlock next step</label>
-                <input type="text" class="form-control" id="code" placeholder="Code">
+                <input type="text" class="form-control" id="code" name="code" placeholder="Code">
                 <small id="code2" class="form-text text-muted">Short code
                 </small>
             </div>
-            <button type="submit" class="btn btn-success">Create Step</button>
-
+            <input type="submit" class="btn btn-success" value="Upload"/>
+        </form>
     </div>
     <div class="col-sm-5">
         List of steps

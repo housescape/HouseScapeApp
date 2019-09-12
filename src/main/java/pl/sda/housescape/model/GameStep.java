@@ -1,9 +1,16 @@
 package pl.sda.housescape.model;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import pl.sda.housescape.steps.Image;
 
+@AllArgsConstructor
 public class GameStep {
 
-    private String urlImage;
+    private Image image;
+    private String description;
+    private String code;
+
+
 
 }
