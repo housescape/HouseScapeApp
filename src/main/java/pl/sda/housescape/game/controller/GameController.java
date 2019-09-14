@@ -1,5 +1,6 @@
 package pl.sda.housescape.game.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,13 @@ public class GameController {
         this.gameService = gameService;
         this.imageStorageService = imageStorageService;
     }
+
+
+//    @PostMapping("/{idGame}/upload")
+//    public String uploadFile(@PathVariable long idGame, @RequestParam("file") MultipartFile file) {
+//        imageStorageService.uploadImage(new UploadImage(file, file.getOriginalFilename()));
+//        return "redirect:/game/{idGame}";
+//    }
 
     @RequestMapping
     public ModelAndView getGames() {
@@ -47,6 +55,7 @@ public class GameController {
     @RequestMapping("/{idGame}")
     public ModelAndView editGame(@PathVariable long idGame) {
         ModelAndView mnv = new ModelAndView("edit");
+        mnv.addObject("images", imageStorageService.getImages());
         mnv.addObject("game", gameService.editGame(idGame));
         return mnv;
     }
