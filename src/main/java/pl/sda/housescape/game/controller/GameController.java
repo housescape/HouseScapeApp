@@ -1,6 +1,7 @@
 package pl.sda.housescape.game.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,7 @@ public class GameController {
     public ModelAndView editGame(@PathVariable long idGame) {
         ModelAndView mnv = new ModelAndView("edit");
         mnv.addObject("game", gameService.editGame(idGame));
+        mnv.addObject("images", imageStorageService.getImages());
         return mnv;
     }
 
@@ -56,5 +58,5 @@ public class GameController {
         gameService.remove(idGame);
         return new ModelAndView("redirect:/game");
     }
-    
+
 }
