@@ -1,4 +1,4 @@
-package pl.sda.housescape.game;
+package pl.sda.housescape.game.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

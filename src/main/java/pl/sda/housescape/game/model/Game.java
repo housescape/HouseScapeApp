@@ -1,13 +1,13 @@
-package pl.sda.housescape.model;
+package pl.sda.housescape.game.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import pl.sda.housescape.game.GameEntity;
+import pl.sda.housescape.game.dao.GameEntity;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 public class Game {
 
     private Long id;
@@ -15,7 +15,7 @@ public class Game {
     private List<GameStep> steps;
 
 
-    public Game(GameEntity gameEntity) {
+    public Game(Long id, String name) {
         this.id = id;
         this.name = name;
     }

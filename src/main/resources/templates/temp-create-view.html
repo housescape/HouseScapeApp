@@ -9,7 +9,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <form th:action="@{/create}" method="post" th:object="${newGame}">
+    <form th:action="@{/create}" method="post" th:object="${gameForm}">
         <label>Name</label>
         <input type="text" th:field="*{name}" />
 

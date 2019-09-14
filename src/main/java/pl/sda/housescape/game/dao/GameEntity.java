@@ -1,5 +1,7 @@
-package pl.sda.housescape.game;
+package pl.sda.housescape.game.dao;
 import lombok.*;
+import pl.sda.housescape.game.model.Game;
+
 import javax.persistence.*;
 
 @Getter
@@ -16,4 +18,8 @@ public class GameEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    public Game toModel() {
+        return new Game(id, name);
+    }
 }

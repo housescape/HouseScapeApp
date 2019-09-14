@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout:decorate="layout/layout"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <meta charset="UTF-8">
     <title>HomeScape</title>
@@ -41,9 +45,7 @@
     </div>
 
     <div class="col-sm-5" align="center">
-        <form action="/create">
-            <button type="submit" class="btn btn-success">Create New Game</button>
-        </form>
+        <a class="btn btn-success" th:href="@{/game/new}">Create New Game</a>
     </div>
 </div>
 <div class="bg"></div>

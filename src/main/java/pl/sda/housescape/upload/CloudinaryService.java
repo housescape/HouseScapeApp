@@ -1,4 +1,4 @@
-package pl.sda.housescape.steps;
+package pl.sda.housescape.upload;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
