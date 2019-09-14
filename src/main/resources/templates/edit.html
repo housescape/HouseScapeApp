@@ -32,7 +32,7 @@
         <div class="row" style="margin-top: 20px; margin-left: 20px">
             <div class="col-sm-7">
                 Steps
-                <form method="POST" enctype="multipart/form-data" action="/upload">
+                <form method="POST" enctype="multipart/form-data" action="/game/{idGame}/upload">
                     <table>
                         <tr>
                             <td th:each="image : ${images}"><img th:width="100" th:src="${image.url}"/></td>
