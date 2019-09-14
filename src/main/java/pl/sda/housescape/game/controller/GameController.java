@@ -3,20 +3,23 @@ package pl.sda.housescape.game.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.housescape.game.service.GameService;
+import pl.sda.housescape.upload.ImageStorageService;
+import pl.sda.housescape.upload.UploadImage;
 
 @Controller
-@RequestMapping ("/game")
+@RequestMapping("/game")
 public class GameController {
 
     private final GameService gameService;
+    private final ImageStorageService imageStorageService;
 
-    public GameController(GameService gameService) {
+    public GameController(GameService gameService, ImageStorageService imageStorageService) {
         this.gameService = gameService;
+        this.imageStorageService = imageStorageService;
     }
 
     @RequestMapping
@@ -40,4 +43,18 @@ public class GameController {
         gameService.addGame(gameForm);
         return new ModelAndView("redirect:/game");
     }
+
+    @RequestMapping("/{idGame}")
+    public ModelAndView editGame(@PathVariable long idGame) {
+        ModelAndView mnv = new ModelAndView("edit");
+        mnv.addObject("game", gameService.editGame(idGame));
+        return mnv;
+    }
+
+    @RequestMapping("/delete/{idGame}")
+    public ModelAndView deleteGame(@PathVariable long idGame) {
+        gameService.remove(idGame);
+        return new ModelAndView("redirect:/game");
+    }
+    
 }

@@ -11,6 +11,29 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background-color: #81aea7 ">
-    <h1 th:text="${#lists.size(games)}">[Games]</h1>
+<div class="row" style="margin-top: 20px">
+    <div class="col-sm-2" align="center">
+        <form action="/">
+            <button type="submit" class="btn btn-dark" style="align-items: center">Back to main page</button>
+        </form>
+    </div>
+    <div class="col-sm-10" align="center">
+        <h1>HomeScape</h1>
+    </div>
+</div>
+<div align="center">
+<table>
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Status</b></td>
+    </tr>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.name}" style="font-weight: bold"></td>
+        <td th:text="${game.status}" style="font-weight: bold"></td>
+        <td><a class="btn btn-success" th:href="@{'/game/'+${game.id}}">Edit</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/game/delete/'+${game.id}}">Delete</a></td>
+    </tr>
+</table>
+</div>
 </body>
 </html>

@@ -5,7 +5,4 @@ import lombok.Data;
 @Data
 public class GameForm {
     private String name;
-    public String getName() {
-        return name;
-    }
 }
