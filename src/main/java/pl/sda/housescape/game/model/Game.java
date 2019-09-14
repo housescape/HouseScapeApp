@@ -15,6 +15,10 @@ public class Game {
     private List<GameStep> steps;
 
 
+    public Game(String name) {
+        this.name = name;
+    }
+
     public Game(Long id, String name) {
         this.id = id;
         this.name = name;
