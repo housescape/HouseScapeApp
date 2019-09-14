@@ -1,0 +1,16 @@
+body{
+    height: 100%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../picture/my_map.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}

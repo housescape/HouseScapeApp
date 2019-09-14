@@ -1,4 +1,4 @@
-package pl.sda.housescape.steps;
+package pl.sda.housescape.upload;
 
 public class Image {
     private String name;

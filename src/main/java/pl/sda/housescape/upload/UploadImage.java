@@ -1,4 +1,4 @@
-package pl.sda.housescape.steps;
+package pl.sda.housescape.upload;
 
 import org.springframework.web.multipart.MultipartFile;
 

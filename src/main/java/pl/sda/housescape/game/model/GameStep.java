@@ -1,4 +1,4 @@
-package pl.sda.housescape.model;
+package pl.sda.housescape.game.model;
 
 import java.util.List;
 
