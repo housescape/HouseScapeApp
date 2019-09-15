@@ -47,6 +47,7 @@
             <button type="submit" class="btn btn-success">Create Step</button>
         </form>
     </div>
+
     <div class="col-sm-5">
         <h3>List of steps</h3>
         <table th:each="step : ${stepList}">
@@ -55,6 +56,8 @@
                     <td><li>Step</li></td>
                     <td><a class="btn btn-success" th:href="@{'/game/'+${game.id}+'/'+${step.id}}">Edit</a>
                         <a class="btn btn-danger" th:href="@{'/game/delete-step/'+${game.id}+'/'+${step.id}}">Delete</a></td>
+
+
 
                 <tr>
                     <td>Description:</td>
