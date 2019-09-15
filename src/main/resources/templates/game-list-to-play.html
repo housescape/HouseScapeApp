@@ -6,12 +6,12 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <meta charset="UTF-8">
-    <title>Step</title>
+    <title>HomeScape</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background-color: #81aea7 ">
-<div class="row" style="margin-top: 10px">
+<div class="row" style="margin-top: 20px">
     <div class="col-sm-2" align="center">
         <form action="/">
             <button type="submit" class="btn btn-dark" style="align-items: center">Back to main page</button>
@@ -21,28 +21,18 @@
         <h1>HomeScape</h1>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div id="second" class="col-sm-7">
-            <img width="100%"
-                 src="https://www.koty.pl/wp-content/uploads/2017/11/shutterstock_684452296-e1511112417106-864x575.jpg"><br/>
-        </div>
-        <div id="third" class="col-sm-5">
-            <tr th:each="game : ${steps}">
-                <td th:text="${game.description}" style="font-weight: bold"></td>
-            </tr>
-
-            <form>
-                <div class="form-group" >
-
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                           placeholder="Enter a Code">
-                </div>
-                <button type="submit" class="btn btn-primary" align="right">Submit the code</button>
-            </form>
-        </div>
-    </div>
+<div align="center">
+<table>
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Status</b></td>
+    </tr>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.name}" style="font-weight: bold"></td>
+        <td th:text="${game.status.DONE}" style="font-weight: bold"></td>
+        <td><a class="btn btn-success" th:href="@{'/play/'+${game.id}} ">Play</a></td>
+    </tr>
+</table>
 </div>
-
 </body>
 </html>
