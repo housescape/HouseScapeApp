@@ -5,6 +5,7 @@ import pl.sda.housescape.game.model.Game;
 import pl.sda.housescape.game.model.GameStep;
 
 import javax.persistence.*;
+import javax.persistence.SequenceGenerator;
 
 @Getter
 @AllArgsConstructor
@@ -17,7 +18,8 @@ import javax.persistence.*;
 public class StepEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "step-id-generator")
+    @SequenceGenerator(name = "step-id-generator", sequenceName = "stepId",allocationSize = 50)
     private Long id;
     private String description;
     private String code;

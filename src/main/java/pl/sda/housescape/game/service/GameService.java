@@ -56,6 +56,7 @@ public class GameService {
         GameEntity gameEntity = repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null);
         return stepRepository.findAll()
                 .stream()
+                .filter(x->x.getGameEntity().equals(gameEntity))
                 .map(StepEntity::toModel)
                 .collect(Collectors.toList());
     }
@@ -70,5 +71,13 @@ public class GameService {
     public GameEntity editGame(long id) {
         GameEntity game = repository.findAll().stream().filter(todo -> todo.getId() == id).findFirst().orElse(null);
         return game;
+    }
+
+    public GameStep getStep(Long idStep) {
+        return stepRepository.findAll()
+                .stream()
+                .filter(x -> x.getId().equals(idStep))
+                .map(StepEntity::toModel)
+                .findFirst().orElse(null);
     }
 }
