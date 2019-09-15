@@ -25,52 +25,35 @@
 
 <div class="row">
     <div class="col-sm-12" style="margin-left: 20px">
-            <div class="form-group">
-               <div style="font: bold" th:text="${game.name}">
-            </div>
-    </div>
-        <div class="row" style="margin-top: 20px; margin-left: 20px">
-            <div class="col-sm-7">
-                Steps
-                    <table>
-                        <tr>
-                            <td th:each="image : ${images}"><img th:width="100" th:src="${image.url}"/></td>
-                        </tr>
-                    </table>
-                    <form method="POST" enctype="multipart/form-data" action="/upload">
-                    <table>
-                        <tr>
-                            <td>Image to upload:</td>
-                            <td><input type="file" name="file"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Upload"/></td>
-                        </tr>
-                    </table>
-                </form>
-
+        <div class="form-group">
+            <p th:text="${game.name}"/>
+        </div>
+        <div class="col-sm-7">
+            Steps
+            <form th:object="${newStep}" method="POST">
                 <div class="form-group">
                     <label for="description">Description of place</label>
-                    <input type="text" class="form-control" id="description" placeholder="Description">
+                    <input type="text" class="form-control" id="description" placeholder="Description"  th:field="*{description}">
                     <small id="description2" class="form-text text-muted">Description of place
                     </small>
                 </div>
                 <div class="form-group">
                     <label for="code">Enter code to unlock next step</label>
-                    <input type="text" class="form-control" id="code" placeholder="Code">
+                    <input type="text" class="form-control" id="code" placeholder="Code"  th:field="*{code}">
                     <small id="code2" class="form-text text-muted">Short code
                     </small>
                 </div>
                 <button type="submit" class="btn btn-success">Create Step</button>
-
-            </div>
+            </form>
             <div class="col-sm-5">
                 List of steps
-
+                <tr th:each="step : ${stepList}">
+                    <td th:text="${step.description}" style="font-weight: bold"></td>
+                    <td th:text="${step.code}" style="font-weight: bold"></td>
+                </tr>
             </div>
         </div>
-</div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

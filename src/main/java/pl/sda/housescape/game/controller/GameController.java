@@ -45,10 +45,19 @@ public class GameController {
         return new ModelAndView("redirect:/game");
     }
 
+    @PostMapping("/{idGame}")
+    public ModelAndView addStep
+            (@ModelAttribute("newStep") @Validated StepForm stepForm,
+             BindingResult bindingResult, @PathVariable long idGame) {
+        gameService.addStep(stepForm, idGame);
+        return new ModelAndView("redirect:/game/{idGame}");
+    }
     @RequestMapping("/{idGame}")
     public ModelAndView editGame(@PathVariable long idGame) {
         ModelAndView mnv = new ModelAndView("edit");
         mnv.addObject("game", gameService.editGame(idGame));
+        mnv.addObject("newStep", new StepForm());
+        mnv.addObject("stepList", gameService.getSteps(idGame));
         mnv.addObject("images", imageStorageService.getImages());
         return mnv;
     }
@@ -58,5 +67,7 @@ public class GameController {
         gameService.remove(idGame);
         return new ModelAndView("redirect:/game");
     }
+
+
 
 }

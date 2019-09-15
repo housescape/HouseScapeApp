@@ -1,14 +1,14 @@
 package pl.sda.housescape.game.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.*;
+import pl.sda.housescape.game.model.Game;
 import pl.sda.housescape.game.model.GameStep;
 
 import javax.persistence.*;
 
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @EqualsAndHashCode
 @Builder
@@ -21,6 +21,9 @@ public class StepEntity {
     private Long id;
     private String description;
     private String code;
+
+    @ManyToOne
+    private GameEntity gameEntity;
 
     public GameStep toModel() {
          return new GameStep(id, description, code);
