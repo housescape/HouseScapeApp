@@ -1,19 +1,23 @@
 package pl.sda.housescape.game.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import pl.sda.housescape.game.dao.GameEntity;
 
+import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.Set;
 
 @Data
+@EqualsAndHashCode
 public class Game {
 
     private Long id;
     private String name;
     private Status status;
-    private List<GameStep> steps;
+
 
 
     public Game(String name) {
