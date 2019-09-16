@@ -25,12 +25,10 @@
 <table>
     <tr>
         <td><b>Name</b></td>
-        <td><b>Status</b></td>
     </tr>
     <tr th:each="game : ${games}">
         <td th:text="${game.name}" style="font-weight: bold"></td>
-        <td th:text="${game.status.DONE}" style="font-weight: bold"></td>
-        <td><a class="btn btn-success" th:href="@{'/play/'+${game.id}} ">Play</a></td>
+        <td><a class="btn btn-success" th:href="@{'/play/'+${game.id} +'/'+${firstIdStep}}">Play</a></td>
     </tr>
 </table>
 </div>

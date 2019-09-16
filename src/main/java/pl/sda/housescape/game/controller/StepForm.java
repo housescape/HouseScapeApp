@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class StepForm {
 
-    String description;
-    String code;
+    private String description;
+    private String code;
+
+
 }

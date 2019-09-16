@@ -28,17 +28,18 @@
                  src="https://www.koty.pl/wp-content/uploads/2017/11/shutterstock_684452296-e1511112417106-864x575.jpg"><br/>
         </div>
         <div id="third" class="col-sm-5">
-            <tr th:each="game : ${steps}">
-                <td th:text="${game.description}" style="font-weight: bold"></td>
+            <tr th:each="step : ${stepList.indexOf(idStep)}">
+                <td th:text="${oneStep.description}" style="font-weight: bold"></td>
             </tr>
 
             <form>
+<!--                <form method="POST" th:object="${codeToUnblock}">-->
                 <div class="form-group" >
 
                     <input type="email" class="form-control" id="exampleInputEmail1"
                            placeholder="Enter a Code">
                 </div>
-                <button type="submit" class="btn btn-primary" align="right">Submit the code</button>
+                <td><a class="btn btn-success" th:href="@{'/play/'+${game.id} +'/'+${idStep}}">Submit</a></td>
             </form>
         </div>
     </div>

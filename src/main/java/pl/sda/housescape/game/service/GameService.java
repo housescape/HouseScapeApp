@@ -81,7 +81,6 @@ public class GameService {
                 .findFirst().orElse(null);
     }
 
-
     public void removeGame(long id) {
         List<StepEntity> listOfStepsToRemove = stepRepository.findAll().stream().filter(x -> x.getGameEntity().getId().equals(id)).collect(Collectors.toList());
         for (StepEntity step : listOfStepsToRemove ){
