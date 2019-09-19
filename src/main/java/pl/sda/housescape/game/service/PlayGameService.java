@@ -39,5 +39,12 @@ public class PlayGameService {
                 .getId();
     }
 
+    public boolean codeComparison(Long idStep, String inputCode) {
+        String stepCode = (stepRepository
+                .findAll().stream()
+                .filter(x->x.getId().equals(idStep))
+                .findFirst().get().getCode());
+        return inputCode.equals(stepCode);
+    }
 
 }

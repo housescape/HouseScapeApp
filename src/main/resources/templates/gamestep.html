@@ -31,14 +31,9 @@
             <tr th:each="step : ${stepList.indexOf(idStep)}">
                 <td th:text="${oneStep.description}" style="font-weight: bold"></td>
             </tr>
-
-            <form>
-<!--                <form method="POST" th:object="${codeToUnblock}">-->
-                <div class="form-group" >
-
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                           placeholder="Enter a Code">
-                </div>
+            <form  method="post" th:action="@{'/play/'+${game.id} +'/'+${idStep}}" th:object="${inputCode}">
+                <input type="text" class="form-control" id="inputCode" placeholder="Enter a Code">
+                <br>
                 <td><a class="btn btn-success" th:href="@{'/play/'+${game.id} +'/'+${idStep}}">Submit</a></td>
             </form>
         </div>
