@@ -40,22 +40,23 @@ public class PlayGameController {
         mnv.addObject("game", gameService.editGame(idGame));
         mnv.addObject("stepList", gameService.getSteps(idGame));
         mnv.addObject("oneStep", gameService.getStep(idStep));
+        mnv.addObject("newStep", new StepForm());
         mnv.addObject("idStep",idStep);
-       // mnv.addObject("inputCode", new String());
+
         return mnv;
     }
 
-//    @PostMapping("/{idGame}/{idStep}")
-//    public ModelAndView codeValidated(
-//            @ModelAttribute("inputCode")
-//            @Validated GameForm gameForm, BindingResult bindingResult){
-//        if(bindingResult.hasErrors()){
-//            return new ModelAndView("/{idGame}/{idStep}");
-//        }
-////        playGameService.codeComparison("{inputode}");
-////        return new ModelAndView("redirect:/products");
-//    }
 
+    @PostMapping("/{idGame}/{idStep}")
+    public ModelAndView nextStep(@PathVariable Long idGame, @PathVariable Long idStep,
+                                 @ModelAttribute("nextStep") StepForm stepForm){
+        if(playGameService.codeComparison(idStep,"inputCode")){
+            stepForm.getNexStep();
+            return new ModelAndView("/{idGame}/{idStep}");
+        }
+        return new ModelAndView("/{idGame}/{idStep}");
+
+    }
 
     }
 

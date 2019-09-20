@@ -31,8 +31,9 @@
             <tr th:each="step : ${stepList.indexOf(idStep)}">
                 <td th:text="${oneStep.description}" style="font-weight: bold"></td>
             </tr>
-            <form  method="post" th:action="@{'/play/'+${game.id} +'/'+${idStep}}" th:object="${inputCode}">
-                <input type="text" class="form-control" id="inputCode" placeholder="Enter a Code">
+            <form  method="post" th:action="@{'/play/'+${game.id} +'/'+${idStep}}" th:object="${nextStep}">
+                <label>Code</label>
+                <input type="text" th:field="*{code}" />
                 <br>
                 <td><a class="btn btn-success" th:href="@{'/play/'+${game.id} +'/'+${idStep}}">Submit</a></td>
             </form>
