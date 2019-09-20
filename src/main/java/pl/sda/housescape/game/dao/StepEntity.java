@@ -23,12 +23,13 @@ public class StepEntity {
     private Long id;
     private String description;
     private String code;
+    private String imageUrl;
 
     @ManyToOne
     private GameEntity gameEntity;
 
     public GameStep toModel() {
-         return new GameStep(id, description, code);
+         return new GameStep(id, description, code, imageUrl);
     }
 }
 

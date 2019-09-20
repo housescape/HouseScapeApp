@@ -20,6 +20,7 @@ public class GameService {
     private final GameRepository repository;
     private final StepRepository stepRepository;
 
+
     public GameService(GameRepository repository, StepRepository stepRepository) {
         this.repository = repository;
         this.stepRepository = stepRepository;
@@ -45,18 +46,6 @@ public class GameService {
                 .build();
         repository.save(gameEntity);
     }
-
-    public void addStep(StepForm stepForm, Long idGame) {
-        StepEntity stepEntity = StepEntity
-                .builder()
-                .code(stepForm.getCode())
-                .description(stepForm.getDescription())
-                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
-                .build();
-        stepRepository.save(stepEntity);
-    }
-
-
     public List<Game> getGames() {
         return repository.findAll()
                 .stream()
@@ -64,21 +53,9 @@ public class GameService {
                 .collect(Collectors.toList());
     }
 
-    public List<GameStep> getSteps(Long idGame) {
-        GameEntity gameEntity = repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null);
-        return stepRepository.findAll()
-                .stream()
-                .filter(x -> x.getGameEntity().equals(gameEntity))
-                .map(StepEntity::toModel)
-                .collect(Collectors.toList());
-    }
-
-    public GameStep getStep(Long idStep) {
-        return stepRepository.findAll()
-                .stream()
-                .filter(x -> x.getId().equals(idStep))
-                .map(StepEntity::toModel)
-                .findFirst().orElse(null);
+    public GameEntity editGame(long id) {
+        GameEntity game = repository.findAll().stream().filter(todo -> todo.getId() == id).findFirst().orElse(null);
+        return game;
     }
 
     public void removeGame(long id) {
@@ -92,21 +69,4 @@ public class GameService {
 
     }
 
-    public void removeStep(long id) {
-        StepEntity step = stepRepository.findAll().stream().filter(todo -> todo.getId() == id).findFirst().orElse(null);
-        stepRepository.delete(step);
-    }
-
-
-    public GameEntity editGame(long id) {
-        GameEntity game = repository.findAll().stream().filter(todo -> todo.getId() == id).findFirst().orElse(null);
-        return game;
-    }
-
-    public void editStep(StepForm stepForm, long idStep) {
-        StepEntity stepEntity = stepRepository.findAll().stream().filter(x -> x.getId().equals(idStep)).findFirst().orElse(null);
-        stepEntity.setCode(stepForm.getCode());
-        stepEntity.setDescription(stepForm.getDescription());
-        stepRepository.save(stepEntity);
-    }
 }
