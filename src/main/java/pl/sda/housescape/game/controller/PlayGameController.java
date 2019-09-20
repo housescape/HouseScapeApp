@@ -56,8 +56,7 @@ public class PlayGameController {
             Long id = stepRepository.findAll().stream()
                     .filter(x -> x.getId() > idStep)
                     .findFirst().get().getId().longValue();
-            gameService.getStep(id);
-            return new ModelAndView("redirect:/play/{idGame}/{idStep}");
+            return new ModelAndView("redirect:/play/{idGame}/"+id);
         }
         return new ModelAndView("redirect:/play/{idGame}/{idStep}");
 
