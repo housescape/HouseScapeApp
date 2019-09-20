@@ -28,6 +28,13 @@ public class StepEntity {
     @ManyToOne
     private GameEntity gameEntity;
 
+    public static StepEntity create(String description, String code, String imageUrl) {
+        StepEntity entity = new StepEntity();
+        entity.setDescription(description);
+        entity.setCode(code);
+        entity.setImageUrl(imageUrl);
+        return entity;
+    }
     public GameStep toModel() {
          return new GameStep(id, description, code, imageUrl);
     }

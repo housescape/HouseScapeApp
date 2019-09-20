@@ -28,14 +28,15 @@ public class StepService {
 
 
     public void addStep(StepForm stepForm, Long idGame) {
-        StepEntity stepEntity = StepEntity
-                .builder()
-                .code(stepForm.getCode())
-                .description(stepForm.getDescription())
-                .imageUrl(stepForm.getImage().toString())
-                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
-                .build();
-        stepRepository.save(stepEntity);
+//        StepEntity stepEntity = StepEntity
+//                .builder()
+//                .code(stepForm.getCode())
+//                .description(stepForm.getDescription())
+//                .imageUrl(stepForm.getImage().toString())
+//                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
+//                .build();
+        stepRepository.save(StepEntity.create(stepForm.getDescription(), stepForm.getCode(), getImageUrl(stepForm)));
+     //   stepRepository.save(stepEntity);
     }
 
     public List<GameStep> getSteps(Long idGame) {
