@@ -17,9 +17,6 @@ public class GameStep {
     private String code;
 
 
-
-
-
     public GameStep(Long id, String description, String code) {
         this.id = id;
         this.description = description;

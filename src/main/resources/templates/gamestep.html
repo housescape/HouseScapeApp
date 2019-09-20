@@ -35,7 +35,7 @@
                 <label>Code</label>
                 <input type="text" th:field="*{code}" />
                 <br>
-                <td><a class="btn btn-success" th:href="@{'/play/'+${game.id} +'/'+${idStep}}">Submit</a></td>
+                <td><button th:type="submit">Submit</button></td>
             </form>
         </div>
     </div>

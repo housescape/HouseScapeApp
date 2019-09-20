@@ -47,5 +47,4 @@ public class PlayGameService {
         return inputCode.equals(stepCode);
     }
 
-
 }
