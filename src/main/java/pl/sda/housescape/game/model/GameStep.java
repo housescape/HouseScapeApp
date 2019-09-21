@@ -15,11 +15,12 @@ public class GameStep {
     private Long id;
     private String description;
     private String code;
+    private String imageUrl;
 
-
-    public GameStep(Long id, String description, String code) {
+    public GameStep(Long id, String description, String code, String imageUrl) {
         this.id = id;
         this.description = description;
         this.code = code;
+        this.imageUrl = imageUrl;
     }
 }

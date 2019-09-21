@@ -2,6 +2,7 @@ package pl.sda.housescape.upload;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,16 +13,17 @@ import java.io.IOException;
 import java.util.Map;
 
 @Service
-public class CloudinaryService {
+@Slf4j
+public class CloudinaryService implements UploadService{
 
     private final Cloudinary cloudinaryConfig;
 
-    @Autowired
     public CloudinaryService(Cloudinary cloudinaryConfig) {
         this.cloudinaryConfig = cloudinaryConfig;
     }
 
-    public String uploadFile(MultipartFile file) {
+    @Override
+    public String upload(MultipartFile file) {
         try {
             File uploadedFile = convertMultiPartToFile(file);
             Map uploadResult = cloudinaryConfig.uploader().upload(uploadedFile, ObjectUtils.emptyMap());
