@@ -1,6 +1,7 @@
 package pl.sda.housescape.game.dao;
 
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import pl.sda.housescape.game.model.Game;
 import pl.sda.housescape.game.model.GameStep;
 import pl.sda.housescape.game.model.Status;
@@ -27,7 +28,8 @@ public class GameEntity {
     private String name;
     private Status status;
 
-    @OneToMany(mappedBy = "gameEntity")
+    @OneToMany(mappedBy = "id")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL) //kaskadowanie usuwa dzieci
     private Set<StepEntity> steps;
 
     public Game toModel() {

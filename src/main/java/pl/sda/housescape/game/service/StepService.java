@@ -10,6 +10,7 @@ import pl.sda.housescape.game.model.GameStep;
 import pl.sda.housescape.upload.UploadService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,18 +34,17 @@ public class StepService {
                 .code(stepForm.getCode())
                 .description(stepForm.getDescription())
                 .imageUrl(getImageUrl(stepForm))
-                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
+//                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
                 .build();
         stepRepository.save(stepEntity);
     }
 
     public List<GameStep> getSteps(Long idGame) {
-        GameEntity gameEntity = repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null);
-        return stepRepository.findAll()
-                .stream()
-                .filter(x -> x.getGameEntity().equals(gameEntity))
-                .map(StepEntity::toModel)
+        GameEntity gameEntity = repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().
+                orElseThrow(() -> new NoSuchElementException("No game found"));
+        return gameEntity.getSteps().stream().map(StepEntity::toModel)
                 .collect(Collectors.toList());
+
     }
     public GameStep getStep(Long idStep) {
         return stepRepository.findAll()

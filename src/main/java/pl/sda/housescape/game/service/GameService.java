@@ -2,13 +2,9 @@ package pl.sda.housescape.game.service;
 
 import org.springframework.stereotype.Service;
 import pl.sda.housescape.game.controller.GameForm;
-import pl.sda.housescape.game.controller.StepForm;
 import pl.sda.housescape.game.dao.GameEntity;
 import pl.sda.housescape.game.dao.GameRepository;
-import pl.sda.housescape.game.dao.StepEntity;
-import pl.sda.housescape.game.dao.StepRepository;
 import pl.sda.housescape.game.model.Game;
-import pl.sda.housescape.game.model.GameStep;
 import pl.sda.housescape.game.model.Status;
 
 import java.util.List;
@@ -18,12 +14,10 @@ import java.util.stream.Collectors;
 public class GameService {
 
     private final GameRepository repository;
-    private final StepRepository stepRepository;
 
-
-    public GameService(GameRepository repository, StepRepository stepRepository) {
+    public GameService(GameRepository repository) {
         this.repository = repository;
-        this.stepRepository = stepRepository;
+
     }
 
     public void done(long idGame) {
@@ -59,14 +53,7 @@ public class GameService {
     }
 
     public void removeGame(long id) {
-        List<StepEntity> listOfStepsToRemove = stepRepository.findAll().stream().filter(x -> x.getGameEntity().getId().equals(id)).collect(Collectors.toList());
-        for (StepEntity step : listOfStepsToRemove ){
-            stepRepository.delete(step);
-        }
-
-        GameEntity game = repository.findAll().stream().filter(x -> x.getId() == id).findFirst().orElse(null);
-        repository.delete(game);
-
+        repository.deleteById(id);
     }
 
 }

@@ -25,8 +25,8 @@ public class StepEntity {
     private String code;
     private String imageUrl;
 
-    @ManyToOne
-    private GameEntity gameEntity;
+    @Column(name = "game_entity_id")
+    private Long gameId;
 
     public static StepEntity create(String description, String code, String imageUrl) {
         StepEntity entity = new StepEntity();

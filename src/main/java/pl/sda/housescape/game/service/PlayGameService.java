@@ -6,25 +6,24 @@ import pl.sda.housescape.game.dao.GameRepository;
 import pl.sda.housescape.game.dao.StepEntity;
 import pl.sda.housescape.game.dao.StepRepository;
 import pl.sda.housescape.game.model.Game;
-import pl.sda.housescape.game.model.GameStep;
 import pl.sda.housescape.game.model.Status;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class PlayGameService {
 
-    private final GameRepository repository;
+    private final GameRepository gameRepository;
     private final StepRepository stepRepository;
 
-    public PlayGameService(GameRepository repository, StepRepository stepRepository) {
-        this.repository = repository;
+    public PlayGameService(GameRepository gameRepository, StepRepository stepRepository) {
+        this.gameRepository = gameRepository;
         this.stepRepository = stepRepository;
     }
 
     public List<Game> getGamesToPlay() {
-        return repository.findAll()
+        return gameRepository.findAll()
                 .stream()
                 .filter(x -> x.getStatus().equals(Status.DONE))
                 .map(GameEntity::toModel)
@@ -47,4 +46,29 @@ public class PlayGameService {
         return inputCode.equals(stepCode);
     }
 
+    public Optional<Long> getNextStep(Long idGame, Long currentStep) {
+
+        Optional<GameEntity> maybeGame = gameRepository.findById(idGame);
+        if (!maybeGame.isPresent()) {
+            throw new NoSuchElementException("Could not find game with id " + idGame);
+        }
+        GameEntity gameEntity = maybeGame.get();
+        Set<StepEntity> steps = gameEntity.getSteps();
+        ArrayList<StepEntity> stepsList = new ArrayList<>(steps);
+        List<StepEntity> sortedSteps = stepsList.stream()
+                .sorted(Comparator.comparing(StepEntity::getId))
+                .collect(Collectors.toList());
+
+        boolean currentFound = false;
+
+        for (StepEntity step : sortedSteps) {
+            if(currentFound) {
+                return Optional.of(step.getId());
+            }
+            if(step.getId() == currentStep) {
+                currentFound = true;
+            }
+        }
+        return Optional.empty();
+    }
 }

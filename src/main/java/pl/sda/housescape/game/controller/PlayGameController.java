@@ -3,10 +3,11 @@ package pl.sda.housescape.game.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.housescape.game.dao.StepRepository;
 import pl.sda.housescape.game.service.GameService;
 import pl.sda.housescape.game.service.PlayGameService;
 import pl.sda.housescape.game.service.StepService;
+
+import java.util.Optional;
 
 
 @Controller
@@ -16,13 +17,11 @@ public class PlayGameController {
     private final PlayGameService playGameService;
     private final GameService gameService;
     private final StepService stepService;
-    private final StepRepository stepRepository;
 
-    public PlayGameController(PlayGameService playGameService, GameService gameService, StepService stepService,  StepRepository stepRepository) {
+    public PlayGameController(PlayGameService playGameService, GameService gameService, StepService stepService) {
         this.playGameService = playGameService;
         this.gameService = gameService;
         this.stepService = stepService;
-        this.stepRepository = stepRepository;
     }
 
 
@@ -42,7 +41,6 @@ public class PlayGameController {
         mnv.addObject("oneStep", stepService.getStep(idStep));
         mnv.addObject("nextStep", new StepForm());
         mnv.addObject("idStep", idStep);
-
         return mnv;
     }
 
@@ -51,14 +49,16 @@ public class PlayGameController {
     public ModelAndView nextStep(@PathVariable Long idGame, @PathVariable Long idStep,
                                  @ModelAttribute("nextStep") StepForm stepForm) {
         if (playGameService.codeComparison(idStep, stepForm.getCode())) {
-            Long id = stepRepository.findAll().stream()
-                    .filter(x -> x.getId() > idStep)
-                    .findFirst().get().getId().longValue();
-            return new ModelAndView("redirect:/play/{idGame}/"+id);
+
+            Optional<Long> nextStepMaybe = playGameService.getNextStep(idGame, idStep);
+            if(!nextStepMaybe.isPresent()) {
+                return new ModelAndView("redirect:/play/{idGame}/win");
+            }
+            return new ModelAndView("redirect:/play/{idGame}/" + nextStepMaybe.get());
         }
         return new ModelAndView("redirect:/play/{idGame}/{idStep}");
-
     }
+
 
 }
 
