@@ -30,7 +30,7 @@
                 <p th:text="${game.name}"></p></h3>
         </div>
         Steps
-        <form th:object="${newStep}" method="POST">
+        <form th:object="${newStep}" enctype="multipart/form-data" method="POST">
             <div>
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" style="width: 30%"/>

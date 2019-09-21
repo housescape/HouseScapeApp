@@ -28,15 +28,14 @@ public class StepService {
 
 
     public void addStep(StepForm stepForm, Long idGame) {
-//        StepEntity stepEntity = StepEntity
-//                .builder()
-//                .code(stepForm.getCode())
-//                .description(stepForm.getDescription())
-//                .imageUrl(stepForm.getImage().toString())
-//                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
-//                .build();
-        stepRepository.save(StepEntity.create(stepForm.getDescription(), stepForm.getCode(), getImageUrl(stepForm)));
-     //   stepRepository.save(stepEntity);
+        StepEntity stepEntity = StepEntity
+                .builder()
+                .code(stepForm.getCode())
+                .description(stepForm.getDescription())
+                .imageUrl(getImageUrl(stepForm))
+                .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
+                .build();
+        stepRepository.save(stepEntity);
     }
 
     public List<GameStep> getSteps(Long idGame) {
@@ -69,7 +68,7 @@ public class StepService {
     private String getImageUrl(StepForm stepForm) {
         return !stepForm.getImage().isEmpty() ?
                 uploadService.upload(stepForm.getImage()) :
-                null;
+                "https://birkeland.uib.no/wp-content/themes/bcss/images/no.png";
     }
 
 }
