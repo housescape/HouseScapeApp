@@ -22,12 +22,6 @@ public class GameController {
     }
 
 
-//    @PostMapping("/{idGame}/upload")
-//    public String uploadFile(@PathVariable long idGame, @RequestParam("file") MultipartFile file) {
-//        stepService.upload(new UploadImage(file, file.getOriginalFilename()));
-//        return "redirect:/game/{idGame}";
-//    }
-
     @RequestMapping
     public ModelAndView getGames() {
         ModelAndView mnv = new ModelAndView("game-list");

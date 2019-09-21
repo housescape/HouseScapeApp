@@ -60,8 +60,6 @@
                     <td><li>Step</li></td>
                     <td><a class="btn btn-success" th:href="@{'/game/'+${game.id}+'/'+${step.id}}">Edit</a>
                         <a class="btn btn-danger" th:href="@{'/game/delete-step/'+${game.id}+'/'+${step.id}}">Delete</a></td>
-
-
                 <tr>
                     <td>Description:</td>
                     <td th:text="${step.description}"></td>
