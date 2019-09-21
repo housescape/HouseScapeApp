@@ -68,7 +68,6 @@ public class GameController {
         mnv.addObject("game", gameService.editGame(idGame));
         mnv.addObject("newStep", new StepForm());
         mnv.addObject("stepList", gameService.getSteps(idGame));
-        mnv.addObject("images", imageStorageService.getImages());
         return mnv;
     }
 
