@@ -32,7 +32,7 @@ public class StepService {
                 .builder()
                 .code(stepForm.getCode())
                 .description(stepForm.getDescription())
-                .imageUrl(stepForm.getImage().toString())
+                .imageUrl(getImageUrl(stepForm))
                 .gameEntity(repository.findAll().stream().filter(x -> x.getId().equals(idGame)).findFirst().orElse(null))
                 .build();
         stepRepository.save(stepEntity);
@@ -68,7 +68,7 @@ public class StepService {
     private String getImageUrl(StepForm stepForm) {
         return !stepForm.getImage().isEmpty() ?
                 uploadService.upload(stepForm.getImage()) :
-                null;
+                "https://birkeland.uib.no/wp-content/themes/bcss/images/no.png";
     }
 
 }
